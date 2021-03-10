@@ -1,59 +1,33 @@
-.vote
-{
-	width: 9rem
-	margin: 3rem 0;
-	text-align: right;
-	float: right;
-}
 
-.vote_bar
-{
-	width: 100%;
-	height: 0.3rem;
-	background-color: red;
-}
 
-.vote_progress
+p
 {
-	width: 0rem;
-	height: 0.3rem;
-	background-color: green; 
-}
-
-.vote_btns
-{
-	margin-top: 0.6rem;
-	text-align: right;
-}
-
-.vote_btn
-{
-	border: none;
-	padding: 0;
-	margin: 0 0 0 1.125;
-	display: inline-block;;
-	margin-left: 0.6rem
-	background: transparent;
-	cursor: pointer;
-	transition: color 0.3s;
-}
-
-.vote_like:hover
-{
-	color: green;
-}
-
-.vote_dislike:hover
-{
-	color: red;
-}
-
-.vote_btns button:
-{
-	max-width: 20%;
+    max-width: 2%;
 	height: auto;
-	color: green;
-	cursor: pointer;
+    
 }
+
+.profil
+{
+	max-width: 2%;
+	height: auto;
+	display : inline-block;
+    vertical-align: top;
+    text-align: right;
+    clear: both;
+}
+
+#logo
+{
+	max-width: 10%;
+	height: auto;
+	float: left;
+}
+
+.image
+{
+	display: inline;
+}
+
 
 
