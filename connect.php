@@ -28,7 +28,7 @@ if(isset($_POST['formconnect']))
 
 if(!$user)
   {
-     echo 'Mauvais identifiant ou mot de passe!';
+     exit('Mauvais identifiant ou mot de passe!');
   }  
 else
   {
@@ -36,6 +36,8 @@ else
     $fullname = $user['nom']." ".$user['prenom'];
     $_SESSION['id']=$user['id'];
     $_SESSION['fullname']=$fullname;
+    $_SESSION['prenom']=$user['prenom'];
+
 
 
     $_SESSION['usernameconnect']=$_POST['usernameconnect'];

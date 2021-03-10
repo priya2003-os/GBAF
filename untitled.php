@@ -19,6 +19,24 @@ if ($res) {
     $down = $res->fetchColumn();
 }
 
+if(isset($_POST['likes'])) {
+
+      $user_id=($_POST['user_id']);
+      $acteur_id=($_POST['acteur_id']);
+      $insertlike = $bdd->prepare('INSERT INTO lidiske (id_espacemembres,id_acteur,up) VALUES(?,?,?)');
+      $insertlike->execute(array($user_id, $acteur_id,1));
+      
+}
+
+if(isset($_POST['dislikes'])) {
+
+      $user_id=($_POST['user_id']);
+      $acteur_id=($_POST['acteur_id']);
+      // $acteur_id=$_GET['id']; 
+      $insertdislike = $bdd->prepare('INSERT INTO lidiske (id_espacemembres,id_acteur,down) VALUES(?,?,?)');
+      $insertdislike->execute(array($user_id, $acteur_id,1));
+}
+
 $sql_vote= "SELECT up, down FROM lidiske where id_acteur=1 AND id_espacemembres=:id_espacemembres";
 
 $query = $bdd->prepare($sql_vote);
@@ -45,23 +63,7 @@ if(isset($vote))
 
 }  
 
-if(isset($_POST['likes'])) {
 
-      $user_id=($_POST['user_id']);
-      $acteur_id=($_POST['acteur_id']);
-      $insertlike = $bdd->prepare('INSERT INTO lidiske (id_espacemembres,id_acteur,up) VALUES(?,?,?)');
-      $insertlike->execute(array($user_id, $acteur_id,1));
-      
-}
-
-if(isset($_POST['dislikes'])) {
-
-      $user_id=($_POST['user_id']);
-      $acteur_id=($_POST['acteur_id']);
-      // $acteur_id=$_GET['id']; 
-      $insertdislike = $bdd->prepare('INSERT INTO lidiske (id_espacemembres,id_acteur,down) VALUES(?,?,?)');
-      $insertdislike->execute(array($user_id, $acteur_id,1));
-}
 
 
 
@@ -155,7 +157,7 @@ if(isset($_POST['poster_commentaire']))
   <?php      
       }
   ?>
-  <p><a href="deconnexion.php">Se déconnecter</a></p>
+  <a href="deconnexion.php">Se déconnecter</a>
 
 
 
