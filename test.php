@@ -1,36 +1,61 @@
-<!doctype html>
+
 <html lang="fr">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-
     <link href="style.css" rel="stylesheet">
 
-    <title>GBAF</title>
+    <title>GBAFconnexion</title>
   </head>
   <body>
     <img id="logo" src="GBAF2/image/gbaf.png"> 
     <h1>Le Groupement Banque Assurance Français</h1>
       <br/><br/>
+ 
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="style.css" rel="stylesheet">
+
+    <title>GBAFconnexion</title>
+  </head>
+  <body>
+    <img id="logo" src="GBAF2/image/gbaf.png"> 
+    <h1>Le Groupement Banque Assurance Français</h1>
+      <br/><br/>
+ 
 <?php
 session_start();
 
 $bdd = new PDO('mysql:host=localhost;dbname=nom_base;charset=utf8', 'root', 'root');
-      if(isset($_POST['formconnect']))
-      {
+
         $usernameconnect=htmlspecialchars($_POST[usernameconnect]);
         $mdpconnect=sha1($_POST['mdpconnect']);
+
+        $requsername=$bdd- >prepare("SELECT * FROM membres WHERE nomdutilisateur=? AND motdepasse=? ");
+         $requsername- >execute(array($usernameconnect, $mdpconnect));
+         $usernameexist=$requsername- >rowCount();
+
+         if($usernameexist==1)
+         {
+         	
+         }
+
         if(!empty($usernameconnect) AND !empty($mdpconnect))
+
+      if(isset($_POST['formconnect']))
+      {
+        
         {
-          $requser=$bdd- >prepare("SELECT * FROM membres WHERE nomdutilisateur=? AND motdepasse=? ");
-          $requser- >execute(array($usernameconnect, $mdpconnect));
-          $userexist=$requser- >rowCount();
-          if($userexist==1)
+          
           {
+          	
             $userinfo=$requser- >fetch();
             $_SESSION['id']=$userinfo['id'];
             $_SESSION['username']=$userinfo['username'];
@@ -47,13 +72,19 @@ $bdd = new PDO('mysql:host=localhost;dbname=nom_base;charset=utf8', 'root', 'roo
           $erreur="Tous les champs doivent être complétés";
         }
       }
-      <div>
-        <h3>Connexion</h3>
+        
+?>
+
+  </body>
+</html>
+
+<h3>Connexion</h3>
           <br/><br/>
           <form method="POST" action="">
             <input type="text" name="usernameconnect" placeholder="Nom d'utilisateur">
              <input type="password" name="mdpconnect" placeholder="Mot de passe">
               <input type="submit" name="formconnect" value="se connecter">
-?>
+          </form>
   </body>
 </html>
+
