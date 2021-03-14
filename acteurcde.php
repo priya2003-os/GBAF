@@ -82,11 +82,11 @@ if(isset($_POST['poster_commentaire']))
 
 <html lang="fr">
   <head>
-    <!-- Required meta tags -->
+    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link href="style.css" rel="stylesheet">
+<!-- 
+    <link href="style.css" rel="stylesheet"> -->
 
     <title>GBAFcde</title>
   </head>
@@ -156,10 +156,6 @@ if(isset($_POST['poster_commentaire']))
       }
   ?>
   <p><a href="deconnexion.php">Se déconnecter</a></p>
-
-
-
-
 
     
 		

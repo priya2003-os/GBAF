@@ -1,12 +1,6 @@
 <?php
 
-$db_options = array(
 
-    //gestion des caractères accentués
-    PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
-
-
-);
 
 
 $bdd = new PDO('mysql:host=localhost:8889;dbname=GBAF', 'root', 'root');
@@ -26,9 +20,9 @@ if(isset($_POST['formconnect']))
     $user = $query->fetch();
       }
 
-if(!$user)
+if(!$user AND !empty($_POST['formconnect']))
   {
-     exit('Mauvais identifiant ou mot de passe!');
+     echo 'Mauvais identifiant ou mot de passe!';
   }  
 else
   {

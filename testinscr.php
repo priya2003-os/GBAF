@@ -5,8 +5,7 @@ $bdd = new PDO('mysql:host=localhost:8889;dbname=GBAF', 'root', 'root');
     
 
 
-if(isset($_POST['forminscription']))
-{
+if(isset($_POST['forminscription'])) {
 	$nom=htmlspecialchars($_POST['nom']);
 	$prenom=htmlspecialchars($_POST['prenom']);
 	$username=htmlspecialchars($_POST['username']);
@@ -17,43 +16,30 @@ if(isset($_POST['forminscription']))
 	$req=$bdd->prepare('SELECT username,password FROM ESPACE_MEMBRES WHERE username= :username');
 	$req->execute(array('username'=>$username,));
 	$usernameexist=$req->fetch();
-}	
-
-
-
-
-if(!empty($_POST['nom']) AND !empty($_POST['prenom']) AND !empty($_POST['username']) AND !empty($_POST['mdp']) AND !empty($_POST['mdp2']) AND !empty($_POST['reponsequestionsecrete']))	
-{
-
+	if(!empty($_POST['nom']) AND !empty($_POST['prenom']) AND !empty($_POST['username']) AND !empty($_POST['mdp']) AND !empty($_POST['mdp2']) AND !empty($_POST['reponsequestionsecrete']))	{
+	if($_POST['mdp']==$_POST['mdp2']) {
+	if($usernameexist=0) {
+}else{
+	
+}	$erreur1="Tous les champs doivent être complétés!";
 }
-else
-{
-	$erreur1="Tous les champs doivent être complétés!";
+}else{
+	$erreur3="Vos mots de passe ne sont pas identiques!";
 }
-
-if($usernameexist=0)
-{
-
-}
-else
-{
+}else{
 	$erreur2="Ce nom d'utilisateur existe déjà!";
 }
 
-if($_POST['mdp']==$_POST['mdp2'])
-{
 
-}
-else
-{
-	$erreur3="Vos mots de passe ne sont pas identiques!";
-}
+
+
+
 
 if(!empty($_POST['nom']) AND !empty($_POST['prenom']) AND !empty($_POST['username']) AND !empty($_POST['mdp']) AND !empty($_POST['mdp2']) AND !empty($_POST['reponsequestionsecrete']) AND ($mdp==$mdp2) AND ($usernameexist==0))
 {
 	$insertmbr=$bdd->prepare("INSERT INTO ESPACE_MEMBRES(Nom, Prenom, username, password, reponsequestion) VALUES(?,?,?,?,?)");
 	$insertmbr->execute(array($nom, $prenom, $username, $mdp, $reponsequestionsecrete));
-	$messageconfirmationcpt="Votre compte à été crée avec succès! <a href=\"connect.php\">Vous pouvez maintenant vous connecter!</a>";
+	$messageconfirmationcpt="Votre compte à été crée avec succès!";
 
 header("LOCATION:connect.php");
 exit();	
@@ -130,17 +116,23 @@ exit();
 							<input type="text" name="reponsequestionsecrete" placeholder="Saisissez votre réponse" id="reponsequestionsecrete"/>
 						</td>
 					</tr>
+					<tr>
+						<td>
+							<input type="submit" name="forminscription" value="Je m'inscris"/>
+						</td>
+					</tr>
+					
 				</table>
 				<br/><br/>
-
-				<input type="submit" name="forminscription" value="Je m'inscris"/>
 				
 			</form>
 			<?php
 
 				if(isset($erreur1, $erreur2, $erreur3))
 				{
-					echo $erreur1, $erreur2, $erreur3;
+					echo $erreur1;
+					echo $erreur2;
+					echo $erreur3;
 				}
 				if (isset($messageconfirmationcpt)) 
 				{
